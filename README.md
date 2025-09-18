@@ -117,10 +117,10 @@ uv run duckdb
 ```
 
 You’ll then be ready to practice the four database operations:
-- Create → add new records (e.g., INSERT)
-- Read → retrieve data (e.g., SELECT)
-- Update → modify existing records (e.g., UPDATE)
-- Delete → remove records (e.g., DELETE)
+- **Create** → add new records (e.g., INSERT)
+- **Read** → retrieve data (e.g., SELECT)
+- **Update** → modify existing records (e.g., UPDATE)
+- **Delete** → remove records (e.g., DELETE)
 
 
 ## The `pick` tool
@@ -173,8 +173,6 @@ Optional requirements:
 
 
 # Advanced Goal
-Artificial Intelligence (AI) is everywhere. Keep up with it. Use a Large Language Model (LLM) to let users query and explore CSV/TSV files in plain English. For example, instead of writing SQL or filters, a student could type: `Show me all Pokémon with speed over 100 that are legendary`.
+🤖 Artificial Intelligence (AI) is everywhere. Keep up with it. Leverage a Large Language Model (LLM) or even [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) to let users query and explore CSV/TSV files in plain English. For example, instead of writing SQL or filters, a student could type: `Show me all Pokémon with speed over 100 that are legendary`.
 
-
-# To you, the little data scientist
 👉 Try things out, make mistakes, and discover along the way — that’s how real learning happens. Enjoy the journey!
