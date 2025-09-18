@@ -1,5 +1,5 @@
 # Little Data Scientist
-This project started when a parent of a 9th grader asked me to create a real Python project for her son. I suggested adapting a small tool I use in my daily data analysis work.
+This project started when a parent of a 8th grader asked me to create a real Python project for her son. I suggested adapting a small tool I use in my daily data analysis work.
 
 This repository doesn’t provide finished solutions — instead, it shares a project idea that students can explore, build, and learn from on their own.
 
