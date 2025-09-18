@@ -44,7 +44,7 @@ After students installed the Remote Development extension, they should be able t
 ### GitHub
 GitHub is a cloud-based platform for hosting Git repositories, enabling version control, collaboration, and code sharing among developers.
 
-✨ Students will need a GitHub account (free) and then create the repository named `pick`. You're going to have a repo like:
+✨ Students will need a GitHub account (free) and then create an empty repository named `pick`. You're going to have a repo like:
 ```
 https://github.com/your-account/pick
 ```
@@ -70,10 +70,10 @@ Students should have a local foler named `pick` in WSL.
 
 Go to the `pick` folder in WSL, run the command below to initialize the project:
 ```
-uv init . --bare
+uv init . --name pick
 ```
 
-You should see something like `Hello from pick` by running the following command:
+You should see something like `Hello from pick!` by running the following command:
 ```
 uv run main.py
 ```
@@ -110,33 +110,54 @@ With DuckDB, students can practice common database CRUD operations, which stand 
 ## The `pick` tool
 pick is a command-line (CLI) tool that works with delimited text files such as a CSV or TSV. It has the following syntax:
 ```
-%(prog)s [options] [--] [query | columns_filter] [file]
+usage: pk [options] [--] [selections_file]
+
+Pick from a file based on a SQL query or columns (names or indices) with/without a row filter.
+
+positional arguments:
+  selections_file       Selections (a SQL query or columns with/without a row filter)
+
+options:
+  -h, --help            show this help message and exit
+  -d, --delimiter d     Single-character delimiter used in the input file (default: None)
+  -t, --tab             Use tab as the delimiter (overrides --delimiter)
+  -H, --headers [list]  Indicates whether the input file has headers, if a comma-separated list provided, use it as the headers
+  -o, --output <file>   Output to file
+  -n, --output-headers  Include headers from the output file
+  -s, --separator s     Separator used in the output file
+  -i, --interactive     Run in interactive mode
 ```
 
 Examples of usage:
 ```
-# Select columns by name or index (mix freely, repeat as needed).`
-# - Regex patterns are supported for column names.
-# - Indices are 1-based (negative allowed, slices too).
-# - Use '!' to deselect a column.
-# - If no columns are given, all are selected.
-$ %(prog)s name,code name '^smiles.*$' 1,2,-1 :3 '!4' '!mw' test.csv
+  # Select columns by name or index (mix freely, repeat as needed).`
+  # - Regex patterns are supported for column names.
+  # - Indices are 1-based (negative allowed, slices too).
+  # - Use '!' to deselect a column.
+  # - If no columns are given, all are selected.
+  $ pk Name,HP '^Type.*$' Total,-3,-1 7:10 '!6' Name pokemon.csv
 
-# Assign custom headers to a file with no header row:
-$ %(prog)s col2 test.csv -H "col1,col2,col3"
+  # Save to output file:
+  $ pk Name HP pokemon.csv -s '\t' -o pokemon_lite.tsv
 
-# Filter rows while selecting columns ($ refers to column in the filter):
-$ %(prog)s mw,cid '$mw <= 200 & $1 == $2 & $cid' test.csv
+  # Assign custom headers to a file that has no header row:
+  $ pk HP Name pokemon_lite.tsv -H Name,HP
 
-# Query with SQL syntax:
-$ %(prog)s "SELECT cid FROM self WHERE mw <= 200" test.csv
+  # Filter rows while selecting columns ($ refers to column in the filter):
+  $ pk Name,Speed '$Legendary == true & $Speed >= 100' pokemon.csv
 
-# Write output as TSV with headers:
-$ cat test.csv | %(prog)s name code test.csv -s '\t' -n -o output.tsv
+  # Query with SQL syntax:
+  $ pk "SELECT Name, Speed FROM self WHERE Legendary == true AND Speed >= 100" pokemon.csv
 
-# Open file interactively (pl, lf, and df objects available):
-$ %(prog)s test.csv -i -H
+  # Read from standard input and write to standard output as TSV with headers:
+  $ cat pokemon.csv | pk Name HP Speed -d ',' -s '      ' -n
+
+  # Open file interactively (pl, lf, and df objects available):
+  $ pk pokemon.csv -H -i
 ```
+
+Notes:
+- 
 
 Explanations of arguments
 
