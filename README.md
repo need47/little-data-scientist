@@ -124,37 +124,37 @@ You’ll then be ready to practice the four database operations:
 
 
 ## The `pick` tool
-Students will develop the `pick`, which is a command-line (CLI) tool or working with CSV/TSV files. It has the following syntax:
+Students will develop `pick`, is a command-line (CLI) tool or working with CSV/TSV files.
 ```
 pick [options] [--] [selections_file]
 ```
 
 Examples of usage:
 ```
-  # Select columns by name or index (mix freely, repeat as needed).`
-  # - Regex patterns are supported for column names.
-  # - Indices are 1-based (negative allowed, slices too).
-  # - Use '!' to deselect a column.
-  # - If no columns are given, all are selected.
-  $ pk Name,HP '^Type.*$' Total,-3,-1 7:10 '!6' Name pokemon.csv
+# Select columns by name or index (mix freely, repeat as needed).`
+# - Regex patterns are supported for column names.
+# - Indices are 1-based (negative allowed, slices too).
+# - Use '!' to deselect a column.
+# - If no columns are given, all are selected.
+$ pk Name,HP '^Type.*$' Total,-3,-1 7:10 '!6' Name pokemon.csv
 
-  # Save results to a file:
-  $ pk Name HP pokemon.csv -s '\t' -o pokemon_lite.tsv
+# Save results to a file:
+$ pk Name HP pokemon.csv -s '\t' -o pokemon_lite.tsv
 
-  # Add headers to a file that has none:
-  $ pk HP Name pokemon_lite.tsv -H Name,HP
+# Add headers to a file that has none:
+$ pk HP Name pokemon_lite.tsv -H Name,HP
 
-  # Filter rows with conditions:
-  $ pk Name,Speed '$Legendary == true & $Speed >= 100' pokemon.csv
+# Filter rows with conditions:
+$ pk Name,Speed '$Legendary == true & $Speed >= 100' pokemon.csv
 
-  # Query with SQL:
-  $ pk "SELECT Name, Speed FROM self WHERE Legendary == true AND Speed >= 100" pokemon.csv
+# Query with SQL:
+$ pk "SELECT Name, Speed FROM self WHERE Legendary == true AND Speed >= 100" pokemon.csv
 
-  # Pipe data through:
-  $ cat pokemon.csv | pk Name HP Speed -d ',' -s '      ' -n
+# Pipe data through:
+$ cat pokemon.csv | pk Name HP Speed -d ',' -s '      ' -n
 
-  # Explore interactively:
-  $ pk pokemon.csv -H -i
+# Explore interactively:
+$ pk pokemon.csv -H -i
 ```
 
 Basic requirements:
