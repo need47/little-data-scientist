@@ -172,7 +172,28 @@ Optional requirements:
 🪄 Hints: Leverage Polars to handle the input and output.
 
 
-# Advanced Goal
-🤖 Artificial Intelligence (AI) is everywhere. Keep up with it. Leverage a Large Language Model (LLM) or even [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) to let users query and explore CSV/TSV files in plain English. For example, instead of writing SQL or filters, a student could type: `Show me all Pokémon with speed over 100 that are legendary`.
+# Advanced Goals
+Once you’ve mastered the basics, you can challenge yourself with more ambitious goals. These ideas connect your project to real-world practices and modern AI tools, helping you think like a professional developer while keeping the fun of exploration.
+
+🤖 AI is now everywhere.
+
+
+## Don't Reinvent the Wheels
+- Learn to leverage existing libraries and tools instead of rewriting everything from scratch (e.g., use Polars for dataframes, DuckDB for SQL queries).
+- Explore how professionals evaluate trade-offs between building custom code vs. using well-tested packages.
+- Practice reading documentation and understanding APIs — a critical real-world skill.
+- Follow mail list and news to keep your knowledge up to date.
+
+
+## Vibe coding with AI
+- Experiment with AI-assisted coding using tools like GitHub Copilot or ChatGPT to get hints, code snippets, and bug fixes.
+- Compare your own solutions with AI-generated ones to understand different approaches.
+- Learn how to give clear prompts (prompt engineering) and evaluate AI suggestions critically, rather than copy-pasting blindly.
+
+
+## LLM and MCP
+- Use a Large Language Model (LLM) to interact with your data files in natural language (e.g., "Show all legendary pokemons").
+- Explore the concept of [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro), which allows tools and LLMs to talk to each other safely and effectively.
+- Build a small prototype where `pick` becomes AI-augmented, letting you query data using plain English and returning structured results. For example, instead of writing SQL or filters, a student could type: `Show me all Pokémon with speed over 100 that are legendary`.
 
 👉 Try things out, make mistakes, and discover along the way — that’s how real learning happens. Enjoy the journey!
