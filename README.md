@@ -58,7 +58,7 @@ Once installed, connect VSCode to WSL and start coding directly in Ubuntu.
 
 ✨ Steps:
 1. Create a free GitHub account.
-2. Create a new, empty repository named pick. It will look like:
+2. Create a new, empty repository named `pick`. It will look like:
 ```
 https://github.com/your-account/pick
 ```
@@ -72,10 +72,35 @@ https://github.com/your-account/pick
 
 In WSL or a VSCode shell, run:
 ```
-$ git clone https://github.com/your-account/pick
+git clone https://github.com/your-account/pick
 ```
 
 This creates a local folder named `pick` in WSL.
+
+
+### Toy Data Files
+Students can practice with the following two files:
+- [pokemon.csv](https://github.com/need47/little-data-scientist/blob/main/pokemon.csv) - A Pokémon dataset in CSV (Comma-Separated Values) format, including a header row.
+- [pokemon_lite.tsv](https://github.com/need47/little-data-scientist/blob/main/pokemon_lite.tsv) - A smaller Pokémon dataset in TSV (Tab-Separated Values) format, without a header row. The two columns are for Name and HP, respectively.
+
+
+### VisiData
+[VisiData](https://www.visidata.org/) is an interactive tool for tabular data.
+
+✨ Install with:
+```
+uv tool install visidata
+```
+
+Test it with:
+```
+vd pokemon.csv
+```
+
+or
+```
+head pokemon.csv | vd
+```
 
 
 ### uv
@@ -95,6 +120,7 @@ You should see `Hello from pick!`
 
 This also creates a hidden `.venv` folder with your Python virtual environment.
 
+
 ### Polars
 [Polars](https://pola.rs/) is a high-performance library for data manipulation.
 
@@ -104,16 +130,16 @@ uv add polars
 ```
 
 ### DuckDB
-[DuckDB](https://duckdb.org/) s an in-process analytical database — great for practicing SQL with real datasets.
+[DuckDB](https://duckdb.org/) is an in-process analytical database — great for practicing SQL with real datasets.
 
 ✨ Install with:
 ```
-uv add duckdb
+curl https://install.duckdb.org | sh
 ```
 
 Test the installation:
 ```
-uv run duckdb
+duckdb pokemon.csv
 ```
 
 You’ll then be ready to practice the four database operations:
@@ -129,35 +155,48 @@ Students will develop `pick`, is a command-line (CLI) tool or working with CSV/T
 pick [options] [--] [selections_file]
 ```
 
-Examples of usage:
+**Examples of usage**:
+
+Select columns by name or index (mix freely, repeat as needed).
+  - Regex patterns are supported for column names.
+  - Indices are 1-based (negative allowed, slices too).
+  - Use '!' to deselect a column.
+  - If no columns are given, all are selected.
 ```
-# Select columns by name or index (mix freely, repeat as needed).`
-# - Regex patterns are supported for column names.
-# - Indices are 1-based (negative allowed, slices too).
-# - Use '!' to deselect a column.
-# - If no columns are given, all are selected.
-$ pk Name,HP '^Type.*$' Total,-3,-1 7:10 '!6' Name pokemon.csv
-
-# Save results to a file:
-$ pk Name HP pokemon.csv -s '\t' -o pokemon_lite.tsv
-
-# Add headers to a file that has none:
-$ pk HP Name pokemon_lite.tsv -H Name,HP
-
-# Filter rows with conditions:
-$ pk Name,Speed '$Legendary == true & $Speed >= 100' pokemon.csv
-
-# Query with SQL:
-$ pk "SELECT Name, Speed FROM self WHERE Legendary == true AND Speed >= 100" pokemon.csv
-
-# Pipe data through:
-$ cat pokemon.csv | pk Name HP Speed -d ',' -s '      ' -n
-
-# Explore interactively:
-$ pk pokemon.csv -H -i
+pick Name,HP '^Type.*$' Total,-3,-1 7:10 '!6' Name pokemon.csv
 ```
 
-Basic requirements:
+Save results to a file:
+```
+pick Name HP pokemon.csv -s '\t' -o pokemon_lite.tsv
+```
+
+Add headers to a file that has none:
+```
+pick HP Name pokemon_lite.tsv -H Name,HP
+```
+
+Filter rows with conditions:
+```
+pick Name,Speed '$Legendary == true & $Speed >= 100' pokemon.csv
+```
+
+Query with SQL:
+```
+pick "SELECT Name, Speed FROM self WHERE Legendary == true AND Speed >= 100" pokemon.csv
+```
+
+Use pipe data:
+```
+cat pokemon.csv | pick Name HP Speed -d ',' -s '      ' -n
+```
+
+Explore interactively:
+```
+pick pokemon.csv -H -i
+```
+
+🌐 **Basic requirements:**
 - Allow a file or standard input (`-` means stdin) as an input.
 - Guess delimiter (e.g., `,` for .csv and `\t` for .tsv) from file extension unless overridden by `-d`.
 - Use `-H` to specify whether the file has headers (or provide custom headers).
@@ -165,7 +204,7 @@ Basic requirements:
 - Use one-based indexing for column selection. Negative indices count from the end.
 - Filter rows by conditions. Use `$col` or `$1` syntax for column in the filter expression.
 
-Optional requirements:
+🌎 **Optional requirements:**
 - Allow to use a SQL query to select columns and/or filter rows.
 - Allow interactive data exploration via `-i`
 
