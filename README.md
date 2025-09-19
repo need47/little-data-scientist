@@ -180,7 +180,6 @@ Once you’ve mastered the basics, you can challenge yourself with more ambitiou
 
 ## Don't Reinvent the Wheels
 - Learn to leverage existing libraries and tools instead of rewriting everything from scratch (e.g., use Polars for dataframes, DuckDB for SQL queries).
-- Explore how professionals evaluate trade-offs between building custom code vs. using well-tested packages.
 - Practice reading documentation and understanding APIs — a critical real-world skill.
 - Follow mail list and news to keep your knowledge up to date.
 
